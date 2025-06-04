@@ -88,7 +88,7 @@ export default async function Home() {
                     <div className="w-80 h-80 rounded-xl border-4 border-slate-300 dark:border-slate-700 overflow-hidden shadow-sm">
                       <Image
                           src="/photo.jpg"
-                          alt="Volodymyr - Full Stack Developer"
+                          alt="Volodymyr - Software Developer"
                           width={400}
                           height={400}
                           className="w-full h-full object-cover"
