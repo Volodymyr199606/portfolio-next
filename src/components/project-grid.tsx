@@ -74,9 +74,11 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                                             <span>{project.stars}</span>
                                         </div>
                                     </div>
-                                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
-                                        {project.description}
-                                    </p>
+                                    {project.description && project.description !== "No description provided" && (
+                                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
+                                            {project.description}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="flex items-center justify-between">
