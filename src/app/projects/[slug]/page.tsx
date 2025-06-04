@@ -108,7 +108,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-white bg-clip-text text-transparent">
                                     {project.name}
                                 </h1>
-                                <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">{project.description}</p>
+                                <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    {project.description !== "No description provided" && (
+                                        <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
+                                            {project.description}
+                                        </p>
+                                    )}
+
+                                </p>
                             </div>
 
                             {/* Project Stats */}
@@ -175,29 +182,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
                         {/* Main Content */}
                         <div className="lg:col-span-2 space-y-12">
-                            <section>
-                                <h2 className="text-3xl font-bold mb-6">About This Project</h2>
-                                <div className="prose dark:prose-invert max-w-none prose-lg">
-                                    <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                                        {project.description ||
-                                            "This project showcases modern development practices and clean code architecture. Built with attention to detail and user experience in mind."}
-                                    </p>
-
-                                    <h3 className="text-2xl font-semibold mb-4">Key Features</h3>
-                                    <ul className="text-lg space-y-2">
-                                        <li>Modern and responsive design</li>
-                                        <li>Clean and maintainable code structure</li>
-                                        <li>Optimized performance</li>
-                                        <li>Cross-browser compatibility</li>
-                                    </ul>
-
-                                    <h3 className="text-2xl font-semibold mb-4 mt-8">Technologies Used</h3>
-                                    <p className="text-lg">
-                                        This project is built using <strong>{project.language}</strong> and follows industry best practices
-                                        for development and deployment.
-                                    </p>
-                                </div>
-                            </section>
 
                             <section>
                                 <h2 className="text-3xl font-bold mb-6">Technical Implementation</h2>
