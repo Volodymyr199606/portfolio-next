@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { Star, ExternalLink, Github } from "lucide-react"
+import { Star, ExternalLink, Github, Globe } from "lucide-react"
 
 interface Project {
     id: number
@@ -36,6 +36,22 @@ function getLanguageColor(language: string): string {
     }
 }
 
+// Function to get demo URL for projects
+function getDemoUrl(projectName: string): string | null {
+    switch (projectName) {
+        case "smart-parking":
+            return "https://smart-parking-vv3z.vercel.app/" // Replace with your actual demo URL
+        case "portfolio-website":
+            return "https://volodymyr-portfolio.vercel.app" // Replace with your actual demo URL
+        case "weather-dashboard":
+            return "https://weather-dashboard-demo.vercel.app" // Replace with your actual demo URL
+        case "e-commerce-platform":
+            return "https://ecommerce-demo.vercel.app" // Replace with your actual demo URL
+        default:
+            return null
+    }
+}
+
 export function ProjectGrid({ projects }: ProjectGridProps) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -44,6 +60,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                 const isSmartParking = project.name === "smart-parking"
                 const primaryLanguage = isSmartParking ? "TypeScript" : project.language
                 const headerColorClass = getLanguageColor(primaryLanguage)
+                const demoUrl = getDemoUrl(project.name)
 
                 return (
                     <div key={project.id} className="group relative">
@@ -84,6 +101,21 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                                         <Github className="w-4 h-4" />
                                         Code
                                     </div>
+
+                                    {/* Live Demo button - only show if demo URL exists */}
+                                    {demoUrl && (
+                                        <div
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                window.open(demoUrl, "_blank")
+                                            }}
+                                            className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/90 text-white backdrop-blur-sm rounded-lg text-sm font-medium hover:bg-green-600 transition-colors cursor-pointer"
+                                        >
+                                            <Globe className="w-4 h-4" />
+                                            Live Demo
+                                        </div>
+                                    )}
+
                                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/90 text-white backdrop-blur-sm rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors">
                                         <ExternalLink className="w-4 h-4" />
                                         View Details
