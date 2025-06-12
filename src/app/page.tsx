@@ -1,8 +1,7 @@
-import { Github, Mail, MapPin, Calendar } from "lucide-react"
+import { Github, Mail, MapPin } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
 import { ProjectGrid } from "@/components/project-grid"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export default async function Home() {
   const projects = await getGithubProjects()
@@ -30,11 +29,9 @@ export default async function Home() {
                     Contact
                   </Link>
                 </nav>
-                <ThemeToggle />
               </div>
             </div>
           </header>
-
 
           <main className="pt-16">
             {/* Hero Section */}
@@ -75,9 +72,6 @@ export default async function Home() {
                       <MapPin className="w-5 h-5" />
                       <span>San Francisco, CA</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5" />
-                    </div>
                   </div>
                 </div>
 
@@ -94,7 +88,6 @@ export default async function Home() {
                           priority
                       />
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -121,13 +114,12 @@ export default async function Home() {
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">About Me</h2>
                   <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                     <p>
-                      I’m a Software Engineer with hands-on experience delivering real-world software solutions. I’m driven by a passion for problem-solving, a strong sense of ownership, and a commitment to building high-quality, impactful products.
+                      I am a Software Engineer with hands-on experience delivering real-world software solutions. I am driven by a passion for problem-solving, a strong sense of ownership, and a commitment to building high-quality, impactful products.
 
                       I thrive in collaborative, fast-paced environments where I can contribute to meaningful projects,
                       continuously learn, and grow as both a developer and a teammate. My goal is to create software
-                      that’s not only functional, but also scalable, maintainable, and a pleasure to use.
+                      that is not only functional, but also scalable, maintainable, and a pleasure to use.
                     </p>
-
                   </div>
                 </div>
 
@@ -140,12 +132,10 @@ export default async function Home() {
                             <span className="font-medium text-slate-700 dark:text-slate-200">{lang}</span>
                             <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
                               <div className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full w-full" />
-
                             </div>
                           </div>
                       ))}
                     </div>
-
                   </div>
 
                   <div>
@@ -169,7 +159,6 @@ export default async function Home() {
                           </span>
                       ))}
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -226,7 +215,6 @@ export default async function Home() {
               </div>
             </div>
           </footer>
-
         </div>
       </div>
   )
