@@ -77,7 +77,6 @@ export default async function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
-                      <span>Available Now</span>
                     </div>
                   </div>
                 </div>
@@ -122,23 +121,11 @@ export default async function Home() {
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">About Me</h2>
                   <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                     <p>
-                      I’m a Software Engineer with hands-on experience delivering real-world software solutions.
-                      I’m driven by a passion for problem-solving, a strong sense of ownership, and a commitment
-                      to building high-quality, impactful products.
-                      I started my journey building Java backend systems and have recently transitioned into full-stack
-                      development, combining robust backend logic with responsive, user-centered interfaces.
-                    </p>
+                      I’m a Software Engineer with hands-on experience delivering real-world software solutions. I’m driven by a passion for problem-solving, a strong sense of ownership, and a commitment to building high-quality, impactful products.
+
                       I thrive in collaborative, fast-paced environments where I can contribute to meaningful projects,
                       continuously learn, and grow as both a developer and a teammate. My goal is to create software
                       that’s not only functional, but also scalable, maintainable, and a pleasure to use.
-                    <p>
-                      When I am not coding, you will find me exploring new technologies, contributing to open-source
-                      projects, or sharing knowledge with the developer community. I believe in writing clean,
-                      maintainable code and following best practices.
-                    </p>
-                    <p>
-                      Currently, I am focused on modern web technologies and always eager to take on new challenges
-                      that push the boundaries of what is possible on the web.
                     </p>
 
                   </div>
