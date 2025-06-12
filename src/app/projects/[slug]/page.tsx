@@ -1,20 +1,9 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, Github, ExternalLink, Star, GitFork, Calendar, Code } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-
-
-const languageColors: Record<string, string> = {
-    Java: "bg-[#b07219]",
-    TypeScript: "bg-[#3178c6]",
-    JavaScript: "bg-[#f7df1e] text-black",
-    Python: "bg-[#3572A5]",
-    HTML: "bg-[#e34c26]",
-    CSS: "bg-[#563d7c]",
-    default: "bg-slate-700"
-};
-
 
 interface Project {
     id: number
@@ -45,8 +34,8 @@ async function getProject(slug: string): Promise<Project | null> {
         return {
             id: repo.id,
             name: repo.name,
-            description: repo.description || "No description provided",
-            language: repo.language ?? "Not specified",
+            description: repo.description || "",
+            language: repo.language || "Not specified",
             stars: repo.stargazers_count,
             forks: repo.forks_count,
             url: repo.html_url,
@@ -81,10 +70,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         day: "numeric",
     })
 
+    // Add Java as additional language for smart-parking project
+    const languages = [project.language]
+    if (project.name === "smart-parking") {
+        languages.push("Java")
+    }
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+        <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white">
             {/* Background Pattern */}
-            <div className="fixed inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:20px_20px] pointer-events-none" />
+            <div className="fixed inset-0 bg-white dark:bg-slate-950" />
+            <div className="fixed inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:20px_20px] pointer-events-none" />
 
             <div className="relative z-10">
                 {/* Header */}
@@ -108,14 +104,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-white bg-clip-text text-transparent">
                                     {project.name}
                                 </h1>
-                                <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    {project.description !== "No description provided" && (
-                                        <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                                            {project.description}
-                                        </p>
-                                    )}
-
-                                </p>
+                                {project.description && project.description !== "No description provided" && (
+                                    <p className="text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">{project.description}</p>
+                                )}
                             </div>
 
                             {/* Project Stats */}
@@ -128,9 +119,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     <GitFork className="w-6 h-6 text-blue-500" />
                                     <span className="text-lg font-medium">{project.forks} forks</span>
                                 </div>
-                                <div className="flex items-center gap-3 px-5 py-3 bg-slate-100 dark:bg-slate-800 rounded-full">
-                                    <Code className="w-6 h-6 text-green-500" />
-                                    <span className="text-lg font-medium">{project.language}</span>
+                                <div className="flex flex-wrap gap-3">
+                                    {languages.map((lang) => (
+                                        <div
+                                            key={lang}
+                                            className="flex items-center gap-3 px-5 py-3 bg-slate-100 dark:bg-slate-800 rounded-full"
+                                        >
+                                            <Code className="w-6 h-6 text-green-500" />
+                                            <span className="text-lg font-medium">{lang}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
@@ -169,8 +167,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
                         {/* Project Image */}
                         <div className="relative">
-                            <div className={`aspect-[4/3] rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-4xl font-bold text-white ${languageColors[project.language] || languageColors.default}`}>
-                                {project.language}
+                            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                <Image
+                                    src={`/placeholder.svg?height=600&width=800&query=${encodeURIComponent(project.name + " project screenshot")}`}
+                                    alt={`${project.name} screenshot`}
+                                    width={800}
+                                    height={600}
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                             {/* Floating elements */}
                             <div className="absolute -top-6 -right-6 w-12 h-12 bg-blue-500 rounded-full animate-bounce" />
@@ -182,14 +186,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
                         {/* Main Content */}
                         <div className="lg:col-span-2 space-y-12">
-
                             <section>
                                 <h2 className="text-3xl font-bold mb-6">Technical Implementation</h2>
                                 <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-8 border border-slate-200 dark:border-slate-700">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div>
-                                            <h4 className="text-xl font-semibold mb-3">Primary Language</h4>
-                                            <p className="text-lg text-slate-600 dark:text-slate-400">{project.language}</p>
+                                            <h4 className="text-xl font-semibold mb-3">Primary Languages</h4>
+                                            <div className="flex flex-wrap gap-2">
+                                                {languages.map((lang) => (
+                                                    <p key={lang} className="text-lg text-slate-600 dark:text-slate-400">
+                                                        {lang}
+                                                    </p>
+                                                ))}
+                                            </div>
                                         </div>
                                         <div>
                                             <h4 className="text-xl font-semibold mb-3">Repository</h4>
@@ -268,6 +277,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     return {
         title: `${project.name} - Volodymyr's Portfolio`,
-        description: project.description,
+        description: project.description || `${project.name} - A ${project.language} project`,
     }
 }
