@@ -40,18 +40,35 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => {
-                // Determine primary language for header color
-                const primaryLanguage = project.name === "smart-parking" ? "TypeScript" : project.language
+                // Special handling for smart-parking project
+                const isSmartParking = project.name === "smart-parking"
+                const primaryLanguage = isSmartParking ? "TypeScript" : project.language
                 const headerColorClass = getLanguageColor(primaryLanguage)
 
                 return (
                     <div key={project.id} className="group relative">
                         <div className="relative overflow-hidden rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                             <Link href={`/projects/${project.name}`} className="block">
-                                {/* Colored header based on language */}
-                                <div className={`aspect-[16/10] overflow-hidden ${headerColorClass} flex items-center justify-center`}>
-                                    <span className="text-xl font-semibold">{primaryLanguage}</span>
-                                </div>
+                                {/* Header with split colors for smart-parking */}
+                                {isSmartParking ? (
+                                    <div className="aspect-[16/10] overflow-hidden relative flex">
+                                        {/* TypeScript half */}
+                                        <div className="w-1/2 bg-blue-500 text-white flex items-center justify-center">
+                                            <span className="text-lg font-semibold">TypeScript</span>
+                                        </div>
+                                        {/* Java half */}
+                                        <div className="w-1/2 bg-amber-600 text-white flex items-center justify-center">
+                                            <span className="text-lg font-semibold">Java</span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    /* Regular single-color header for other projects */
+                                    <div
+                                        className={`aspect-[16/10] overflow-hidden ${headerColorClass} flex items-center justify-center`}
+                                    >
+                                        <span className="text-xl font-semibold">{primaryLanguage}</span>
+                                    </div>
+                                )}
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -96,7 +113,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                         {project.language}
                       </span>
-                                            {project.name === "smart-parking" && (
+                                            {isSmartParking && (
                                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                           Java
                         </span>
