@@ -1,4 +1,4 @@
-import { Github, Mail, MapPin } from 'lucide-react'
+import { Github, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { ProjectGrid } from "@/components/project-grid"
@@ -17,15 +17,25 @@ export default async function Home() {
               <Link href="/" className="font-semibold text-xl tracking-tight">
                 Volodymyr
               </Link>
+
               <div className="flex items-center gap-8">
                 <nav className="hidden sm:flex items-center gap-8">
-                  <Link href="#work" className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Link
+                      href="#work"
+                      className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
                     Work
                   </Link>
-                  <Link href="#about" className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Link
+                      href="#about"
+                      className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
                     About
                   </Link>
-                  <Link href="#contact" className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Link
+                      href="#contact"
+                      className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
                     Contact
                   </Link>
                 </nav>
@@ -72,6 +82,15 @@ export default async function Home() {
                       <MapPin className="w-5 h-5" />
                       <span>San Francisco, CA</span>
                     </div>
+                    <Link
+                        href="https://github.com/Volodymyr199606"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                        aria-label="GitHub Profile"
+                    >
+                      <Github className="w-5 h-5" />
+                    </Link>
                   </div>
                 </div>
 
@@ -99,8 +118,9 @@ export default async function Home() {
                 <div className="text-center space-y-4">
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Featured Projects</h2>
                   <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                    A collection of projects that showcase my skills in development — from concept to deployment.
-                    Most of my earlier projects focused on Java backend development, and I am now expanding into full-stack projects.
+                    A collection of projects that showcase my skills in development — from concept to deployment. Most of
+                    my earlier projects focused on Java backend development, and I am now expanding into full-stack
+                    projects.
                   </p>
                 </div>
                 <ProjectGrid projects={projects} />
@@ -114,11 +134,12 @@ export default async function Home() {
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">About Me</h2>
                   <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                     <p>
-                      I am a Software Engineer with hands-on experience delivering real-world software solutions. I am driven by a passion for problem-solving, a strong sense of ownership, and a commitment to building high-quality, impactful products.
-
-                      I thrive in collaborative, fast-paced environments where I can contribute to meaningful projects,
-                      continuously learn, and grow as both a developer and a teammate. My goal is to create software
-                      that is not only functional, but also scalable, maintainable, and a pleasure to use.
+                      I am a Software Engineer with hands-on experience delivering real-world software solutions. I am
+                      driven by a passion for problem-solving, a strong sense of ownership, and a commitment to building
+                      high-quality, impactful products. I thrive in collaborative, fast-paced environments where I can
+                      contribute to meaningful projects, continuously learn, and grow as both a developer and a teammate.
+                      My goal is to create software that is not only functional, but also scalable, maintainable, and a
+                      pleasure to use.
                     </p>
                   </div>
                 </div>
@@ -141,23 +162,16 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Tools</h3>
                     <div className="flex flex-wrap gap-2">
-                      {[
-                        "Spring Boot",
-                        "GraphQL",
-                        "JUnit",
-                        "Jira",
-                        "GitHub",
-                        "MySQL",
-                        "Next.js",
-                        "React",
-                        "Node.js"
-                      ].map((tool) => (
-                          <span
-                              key={tool}
-                              className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium border border-slate-200 dark:border-slate-700"
-                          >{tool}
-                          </span>
-                      ))}
+                      {["Spring Boot", "GraphQL", "JUnit", "Jira", "GitHub", "MySQL", "Next.js", "React", "Node.js"].map(
+                          (tool) => (
+                              <span
+                                  key={tool}
+                                  className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium border border-slate-200 dark:border-slate-700"
+                              >
+                          {tool}
+                        </span>
+                          ),
+                      )}
                     </div>
                   </div>
                 </div>
@@ -231,16 +245,16 @@ async function getGithubProjects() {
     }
 
     type GitHubRepo = {
-      id: number;
-      name: string;
-      description: string | null;
-      language: string | null;
-      stargazers_count: number;
-      forks_count: number;
-      html_url: string;
-    };
+      id: number
+      name: string
+      description: string | null
+      language: string | null
+      stargazers_count: number
+      forks_count: number
+      html_url: string
+    }
 
-    const repos: GitHubRepo[] = await response.json();
+    const repos: GitHubRepo[] = await response.json()
     return repos.map((repo) => ({
       id: repo.id,
       name: repo.name,
@@ -249,8 +263,7 @@ async function getGithubProjects() {
       stars: repo.stargazers_count,
       forks: repo.forks_count,
       url: repo.html_url,
-    }));
-
+    }))
   } catch (error) {
     console.error("Error fetching GitHub projects:", error)
     return []
