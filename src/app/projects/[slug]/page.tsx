@@ -220,26 +220,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="bg-white dark:bg-slate-800 rounded-lg p-8 border border-slate-200 dark:border-slate-700">
-                                <h3 className="text-xl font-semibold mb-6">Quick Actions</h3>
-                                <div className="space-y-4">
-                                    <Button variant="outline" size="lg" asChild className="w-full justify-start text-base h-12">
-                                        <Link href={project.url} target="_blank" rel="noopener noreferrer">
-                                            <Github className="w-5 h-5 mr-3" />
-                                            Clone Repository
-                                        </Link>
-                                    </Button>
-                                    {project.homepage && (
-                                        <Button variant="outline" size="lg" asChild className="w-full justify-start text-base h-12">
-                                            <Link href={project.homepage} target="_blank" rel="noopener noreferrer">
-                                                <ExternalLink className="w-5 h-5 mr-3" />
-                                                Visit Live Site
-                                            </Link>
-                                        </Button>
-                                    )}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </main>
