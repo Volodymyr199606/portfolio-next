@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowLeft, Github, ExternalLink, Star, GitFork, Calendar, Code } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -77,14 +76,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white">
+        <div className="min-h-screen bg-white dark:bg-[#0a0d16] text-slate-900 dark:text-white">
             {/* Background Pattern */}
-            <div className="fixed inset-0 bg-white dark:bg-slate-950" />
+            <div className="fixed inset-0 bg-white dark:bg-[#0a0d16]" />
             <div className="fixed inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:20px_20px] pointer-events-none" />
 
             <div className="relative z-10">
                 {/* Header */}
-                <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl">
+                <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0a0d16]/80 backdrop-blur-xl">
                     <div className="container mx-auto px-6 py-6">
                         <Link
                             href="/"
@@ -98,7 +97,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
                 <main className="container mx-auto px-6 py-16">
                     {/* Project Hero */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+                    <div className="grid grid-cols-1 gap-16 items-start mb-20">
                         <div className="space-y-8">
                             <div className="space-y-6">
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-white bg-clip-text text-transparent">
@@ -163,22 +162,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     </Button>
                                 )}
                             </div>
-                        </div>
-
-                        {/* Project Image */}
-                        <div className="relative">
-                            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                                <Image
-                                    src={`/placeholder.svg?height=600&width=800&query=${encodeURIComponent(project.name + " project screenshot")}`}
-                                    alt={`${project.name} screenshot`}
-                                    width={800}
-                                    height={600}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            {/* Floating elements */}
-                            <div className="absolute -top-6 -right-6 w-12 h-12 bg-blue-500 rounded-full animate-bounce" />
-                            <div className="absolute -bottom-6 -left-6 w-8 h-8 bg-purple-500 rounded-full animate-pulse" />
                         </div>
                     </div>
 
