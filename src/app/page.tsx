@@ -200,7 +200,9 @@ export default async function Home() {
                     GitHub
                   </Link>
                   <Link
-                      href="mailto:behmavolodymyr@gmail.com"
+                      href="https://mail.google.com/mail/?view=cm&to=behmavolodymyr@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
                   >
                     <Mail className="w-5 h-5" />
