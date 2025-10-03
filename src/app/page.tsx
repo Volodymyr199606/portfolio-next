@@ -38,10 +38,6 @@ export default async function Home() {
                   >
                     Contact
                   </Link>
-                  {/* AI Demo */}
-                  <Link href="/voice" className="text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    Voice
-                  </Link>
                 </nav>
               </div>
             </div>
